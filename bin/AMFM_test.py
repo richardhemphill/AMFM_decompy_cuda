@@ -3,13 +3,13 @@
 """
 Script to test the AMFM_decompy package.
 
-Version 1.0.9
-20/Feb/2020 Bernardo J.B. Schmitt - bernardo.jb.schmitt@gmail.com
+Version 0.0
+23/Feb/2020 Richard Hemphill - rhemphill2019@my.fit.edu
 """
-import amfm_decompy
-import amfm_decompy.pYAAPT as pyaapt
-import amfm_decompy.pyQHM as pyqhm
-import amfm_decompy.basic_tools as basic
+import amfm_decompy_cuda
+import amfm_decompy_cuda.pYAAPT as pyaapt
+import amfm_decompy_cuda.pyQHM as pyqhm
+import amfm_decompy_cuda.basic_tools as basic
 import os.path
 
 # Declare the variables.
