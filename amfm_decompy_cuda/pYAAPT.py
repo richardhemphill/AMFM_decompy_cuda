@@ -233,7 +233,7 @@ class PitchObj(object):
                                                     up_interval,
                                                     samp_values[frame])(tot_interval)
 
-                    elif interp_tech is 'spline' and len(frame) > 2:
+                    elif interp_tech is 'spline' and len(frame) > 3:
                         tck, u_original = scipy_interp.splprep(
                                             [up_interval, samp_values[frame]],
                                              u=up_interval)
