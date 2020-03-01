@@ -10,15 +10,15 @@ except:
             speech signal into its modulated components, aka AM-FM decomposition.'
 
 setup(
-    name = 'AMFM_decompy',
-    version = '1.0.9',
-    author = 'Bernardo J.B. Schmitt',
-    author_email = 'bernardo.jb.schmitt@gmail.com',
-    packages = ['amfm_decompy'],
+    name = 'AMFM_decompy_cuda',
+    version = '0.0.0',
+    author = 'Richard Hemphill',
+    author_email = 'richardlhemphill@gmail.com',
+    packages = ['amfm_decompy_cuda'],
     scripts = ['bin/AMFM_test.py'],
-    package_data = {'amfm_decompy': ['*.wav']},
+    package_data = {'amfm_decompy_cuda': ['*.wav']},
     install_requires = ['numpy', 'scipy',],
-    url = 'https://github.com/bjbschmitt/AMFM_decompy/',
+    url = 'https://github.com/richardhemphill/AMFM_decompy_cuda/',
     license = 'LICENSE.txt',
     description = 'Package containing the tools necessary for decomposing a \
 speech signal into its modulated components, aka AM-FM decomposition.',

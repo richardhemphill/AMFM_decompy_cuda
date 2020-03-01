@@ -13,7 +13,7 @@ import amfm_decompy_cuda.basic_tools as basic
 import os.path
 
 # Declare the variables.
-file_name = os.path.dirname(amfm_decompy.__file__)+os.sep+"sample.wav"
+file_name = os.path.dirname(amfm_decompy_cuda.__file__)+os.sep+"sample.wav"
 window_duration = 0.015   # in seconds
 nharm_max = 25
 SNR = float('Inf')
