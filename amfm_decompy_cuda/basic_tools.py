@@ -6,7 +6,7 @@ Version 1.0.9
 20/Feb/2020 Bernardo J.B. Schmitt - bernardo.jb.schmitt@gmail.com
 """
 
-import numpy as np
+import cupy as cp
 from scipy.signal import lfilter
 
 
@@ -74,8 +74,8 @@ class SignalObj(object):
 
     def set_nharm(self, pitch_track, n_harm_max):
 
-        n_harm = (self.fs/2)/np.amax(pitch_track) - 0.5
-        self.n_harm = int(np.floor(min(n_harm, n_harm_max)))
+        n_harm = (self.fs/2)/cp.amax(pitch_track) - 0.5
+        self.n_harm = int(cp.floor(min(n_harm, n_harm_max)))
 
     """
     Adds a zero-mean gaussian noise to the signal.
@@ -83,11 +83,11 @@ class SignalObj(object):
 
     def noiser(self, pitch_track, SNR):
 
-        self.clean = np.empty((self.size))
+        self.clean = cp.empty((self.size))
         self.clean[:] = self.data
 
-        RMS = np.std(self.data[pitch_track > 0])
-        noise = np.random.normal(0, RMS/(10**(SNR/20)), self.size)
+        RMS = cp.std(self.data[pitch_track > 0])
+        noise = cp.random.normal(0, RMS/(10**(SNR/20)), self.size)
         self.data += noise
 
 """
@@ -95,18 +95,18 @@ Transform a pcm raw signal into a float one, with values limited between -1 and
 1.
 """
 
-def pcm2float(sig, output_dtype=np.float64):
+def pcm2float(sig, output_dtype=cp.float64):
 
      # Make sure it's a NumPy array.
-    sig = np.asarray(sig)
+    sig = cp.asnumpy(cp.asarray(sig))
 
     # Check if it is an array of signed integers.
     assert sig.dtype.kind == 'i', "'sig' must be an array of signed integers!"
     # Set the array output format. Accepts string as input argument for the
     # desired output format (e.g. 'f').
-    out_dtype = np.dtype(output_dtype)
+    out_dtype = cp.dtype(output_dtype)
 
     # Note that 'min' has a greater (by 1) absolute value than 'max'!
     # Therefore, we use 'min' here to avoid clipping.
-    return sig.astype(out_dtype) / out_dtype.type(-np.iinfo(sig.dtype).min)
+    return sig.astype(out_dtype) / out_dtype.type(-cp.iinfo(sig.dtype).min)
 
