@@ -1,7 +1,7 @@
-AMFM_decompy
+AMFM_decompy_cuda
 =============
 
-version 1.0.9
+version 0.0.0
 
 This python package provides the tools necessary for decomposing the voiced part of a speech signal into its modulated components, aka AM-FM decomposition. This designation is used due the fact that, in this method, the signal is modeled as a sum of amplitude- and frequency-modulated components.
 
@@ -52,22 +52,12 @@ should be rewritten in the 1.0.7 and later versions as
 Installation
 =============
 
-The pypi page https://pypi.python.org/pypi/AMFM_decompy/1.0.9 is recommended for a quick installation. But you can also copy all directories here and then run
-
-```python setup.py install```
-
-in command line. After that, run the test script by typing
-
-`AMFM_test.py`
-
-to check if everything is ok (it can take couple of minutes to calculate the results). This script is a example about how to use the package.
-
-I've tested the installation script and the package itself in Linux and Windows systems (but not in iOS) and everything went fine. So, if a problem comes up, it must be probably something about python not finding the files paths.
+```pip install git+https://github.com/richardhemphill/AMFM_decompy_cuda```
 
 How to use
 =============
 
-Check the AMFM_decompy pdf documentation included in the docs folder or the online documentation at http://bjbschmitt.github.io/AMFM_decompy. The amfm_decompy folder contains the sample.wav file that is used to ilustrate the package's code examples.
+Check the  documentation included in the docs folder. The amfm_decompy_cuda folder contains the sample.wav file that is used to ilustrate the package's code examples.
 
 Credits and Publications
 =============
@@ -89,8 +79,8 @@ The QHM algorithm and its upgrades are formulated and presented in the following
 Copyright and contact
 =============
 
-The AMFM_decompy is free to use, share and modify under the terms of the MIT license.
+The AMFM_decompy_cuda is free to use, share and modify under the terms of the MIT license.
 
 Questions, comments, suggestions, and contributions are welcome. Please contact me at
 
-bernardo.jb.schmitt@gmail.com.
+richardlhemphill@gmail.com.
