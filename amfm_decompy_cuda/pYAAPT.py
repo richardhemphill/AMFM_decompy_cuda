@@ -162,7 +162,7 @@ class PitchObj(object):
     interpolated pitch data.
     """
     def interpolate(self):
-        pitch = np.zeros((self.nframes))
+        pitch = cp.asnumpy(cp.zeros((self.nframes)))
         pitch[:] = self.samp_values
         pitch2 = medfilt(self.samp_values, self.SMOOTH_FACTOR)
 
