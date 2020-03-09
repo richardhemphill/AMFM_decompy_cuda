@@ -41,11 +41,12 @@ Version 1.0.9
 """
 
 import numpy as np
+import cupy as cp
 import numpy.lib.stride_tricks as stride_tricks
 from scipy.signal import firwin, medfilt, lfilter
 from scipy.signal.windows import hann, kaiser
 import scipy.interpolate as scipy_interp
-import amfm_decompy.basic_tools as basic
+import amfm_decompy_cuda.basic_tools as basic
 
 
 """
@@ -89,7 +90,7 @@ class PitchObj(object):
         self.noverlap = self.frame_size-self.frame_jump
 
     def set_energy(self, energy, threshold):
-        self.mean_energy = np.mean(energy)
+        self.mean_energy = cp.mean(energy)
         self.energy = energy/self.mean_energy
         self.vuv = (self.energy > threshold)
 
@@ -113,9 +114,11 @@ class PitchObj(object):
     the transitions between these two states occur.
     """
     def edges_finder(self, values):
-        vec1 = (np.abs(values[1:]+values[:-1]) > 0)
-        vec2 = (np.abs(values[1:]*values[:-1]) == 0)
-        edges = np.logical_and(vec1, vec2)
+        values = cp.array(values)
+        vec1 = (cp.abs(values[1:]+values[:-1]) > 0)
+        vec2 = (cp.abs(values[1:]*values[:-1]) == 0)
+        edges = cp.logical_and(vec1, vec2)
+        edges = cp.asnumpy(edges)
         # The previous logical operation detects where voiced/unvoiced transitions
         # occur. Thus, a 'True' in the edges[n] sample indicates that the sample
         # value[n+1] has a different state than value[n](i.e. if values[n] is
