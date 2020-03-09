@@ -141,8 +141,8 @@ class PitchObj(object):
     def fix(self):
         if self.PITCH_HALF > 0:
             nz_pitch = self.samp_values[self.samp_values > 0]
-            idx = self.samp_values < (np.mean(nz_pitch)-self.PITCH_HALF_SENS *
-                                      np.std(nz_pitch))
+            idx = self.samp_values < (cp.mean(nz_pitch)-self.PITCH_HALF_SENS *
+                                      cp.std(nz_pitch))
             if self.PITCH_HALF == 1:
                 self.samp_values[idx] = 0
             elif self.PITCH_HALF == 2:
@@ -150,8 +150,8 @@ class PitchObj(object):
 
         if self.PITCH_DOUBLE > 0:
             nz_pitch = self.samp_values[self.samp_values > 0]
-            idx = self.samp_values > (np.mean(nz_pitch)+self.PITCH_DOUBLE_SENS *
-                                      np.std(nz_pitch))
+            idx = self.samp_values > (cp.mean(nz_pitch)+self.PITCH_DOUBLE_SENS *
+                                      cp.std(nz_pitch))
             if self.PITCH_DOUBLE == 1:
                 self.samp_values[idx] = 0
             elif self.PITCH_DOUBLE == 2:
