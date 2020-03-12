@@ -50,4 +50,3 @@ eaQHM = pyqhm.eaqhm(signal, aQHM, pitch, window, 0.001, N_iter=3, N_runs=2,
               phase_tech = 'phase')
 
 print ("eaQHM SRER: {}".format(eaQHM.SRER))
-
